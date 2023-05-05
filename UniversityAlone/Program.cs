@@ -1,8 +1,8 @@
-namespace UniversityAlone
+namespace UniversityDB
 {
     // 1. Using Microsoft directories
     using Microsoft.EntityFrameworkCore;
-    using UniversityAlone.DataAccess;
+    using UniversityDB.DataAccess;
     public class Program
     {
         public static void Main(string[] args)
@@ -10,12 +10,12 @@ namespace UniversityAlone
             var builder = WebApplication.CreateBuilder(args);
 
             // 2.  Connection path with SQL Server Express
-            const string CONNECTION_NAME = "UniversityDB";
+            const string CONNECTION_NAME = "DefaultConnection";
             // 3. Create Connection
             var connectionString = builder.Configuration.GetConnectionString(CONNECTION_NAME);
 
             // 4. Add Context  
-            builder.Services.AddDbContext<UniversityContext>(options => options.UseSqlServer(connectionString));
+            builder.Services.AddDbContext<UniversityDBContext>(options => options.UseSqlServer(connectionString));
 
             // Add services to the container.
 

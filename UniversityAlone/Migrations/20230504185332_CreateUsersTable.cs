@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace UniversityAlone.Migrations
+namespace UniversityDB.Migrations
 {
     public partial class CreateUsersTable : Migration
     {

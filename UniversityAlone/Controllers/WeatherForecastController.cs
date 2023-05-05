@@ -1,9 +1,9 @@
-using Microsoft.AspNetCore.Mvc;
 
-namespace UniversityAlone.Controllers
+namespace UniversityDB.Controllers
 {
+    using Microsoft.AspNetCore.Mvc;
     [ApiController]
-    [Route("[controller]")]
+    [Route("[controller]")] // localhost: 2024/WeatherForecast [Controller]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
@@ -19,7 +19,7 @@ namespace UniversityAlone.Controllers
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
-        public IEnumerable<WeatherForecast> Get()
+        public IEnumerable<WeatherForecast> Get()   
         {
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {

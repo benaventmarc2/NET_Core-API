@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using UniversityAlone.DataAccess;
+using UniversityDB.DataAccess;
 
 #nullable disable
 
-namespace UniversityAlone.Migrations
+namespace UniversityDB.Migrations
 {
-    [DbContext(typeof(UniversityContext))]
+    [DbContext(typeof(UniversityDBContext))]
     [Migration("20230505083450_Create Cursos Table")]
     partial class CreateCursosTable
     {

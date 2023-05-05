@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace UniversityAlone.Migrations
+namespace UniversityDB.Migrations
 {
     public partial class CreateCursosTable : Migration
     {
