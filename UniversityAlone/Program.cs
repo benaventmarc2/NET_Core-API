@@ -9,7 +9,7 @@ namespace UniversityAlone
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // 2.  Connection with SQL Server Express
+            // 2.  Connection path with SQL Server Express
             const string CONNECTION_NAME = "UniversityDB";
             // 3. Create Connection
             var connectionString = builder.Configuration.GetConnectionString(CONNECTION_NAME);
