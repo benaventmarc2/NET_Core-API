@@ -3,6 +3,8 @@ namespace UniversityDB
     // 1. Using Microsoft directories
     using Microsoft.EntityFrameworkCore;
     using UniversityDB.DataAccess;
+    using UniversityDB.Services;
+
     public class Program
     {
         public static void Main(string[] args)
@@ -17,12 +19,26 @@ namespace UniversityDB
             // 4. Add Context  
             builder.Services.AddDbContext<UniversityDBContext>(options => options.UseSqlServer(connectionString));
 
+            // 5. Add Custom Services (folder Services)
+            builder.Services.AddScoped<IStudentsService, StudentsService>();
+
             // Add services to the container.
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            // 6. CORS Configuration
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy(name: "CorsPolicy", builder =>
+                {
+                    builder.AllowAnyOrigin();
+                    builder.AllowAnyMethod();
+                    builder.AllowAnyHeader();
+                });
+            });
 
             var app = builder.Build();
 
@@ -39,6 +55,9 @@ namespace UniversityDB
 
 
             app.MapControllers();
+
+            // 7. Tell app to use CORS
+            app.UseCors("CorsPolicy");
 
             app.Run();
         }
