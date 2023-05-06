@@ -22,11 +22,13 @@ namespace UniversityDB
             // 5. Add Custom Services (folder Services)
             builder.Services.AddScoped<IStudentsService, StudentsService>();
 
+            // 7. Add Service of JWT Autorization
+            //builder.Services.AddJwtTokenServices(builder.Configuration);
             // Add services to the container.
-
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
+            // 8. Config Swagger to take care of Autorization of JWT
             builder.Services.AddSwaggerGen();
 
             // 6. CORS Configuration
