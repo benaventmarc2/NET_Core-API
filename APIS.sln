@@ -5,6 +5,8 @@ VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniversityDB", "UniversityAlone\UniversityDB.csproj", "{61C9FADF-5B7C-403A-B540-F7AD6F626D38}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinqSnippets", "LinqSnippets\LinqSnippets.csproj", "{D74CFB13-3BCD-46A7-8304-F693915CBCBA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{61C9FADF-5B7C-403A-B540-F7AD6F626D38}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{61C9FADF-5B7C-403A-B540-F7AD6F626D38}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{61C9FADF-5B7C-403A-B540-F7AD6F626D38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D74CFB13-3BCD-46A7-8304-F693915CBCBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D74CFB13-3BCD-46A7-8304-F693915CBCBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D74CFB13-3BCD-46A7-8304-F693915CBCBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D74CFB13-3BCD-46A7-8304-F693915CBCBA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
