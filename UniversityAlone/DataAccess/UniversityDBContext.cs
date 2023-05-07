@@ -5,9 +5,10 @@
 
     public class UniversityDBContext : DbContext
     {
-        public UniversityDBContext(DbContextOptions<UniversityDBContext> options) : base(options)
+        private readonly ILoggerFactory _loggerFactory;
+        public UniversityDBContext(DbContextOptions<UniversityDBContext> options, ILoggerFactory loggerFactory) : base(options)
         {
-
+            _loggerFactory = loggerFactory;
         }
 
         // TODO: Add DbSets(Tables of our data base)
@@ -16,5 +17,20 @@
         public DbSet<Category>? Categorys { get; set; }
         public DbSet<Student>? Students { get; set; }
         public DbSet<Chapter>? Chapters { get; set; }
+
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            var logger = _loggerFactory.CreateLogger<UniversityDBContext>();
+
+            //Logs For Everything
+            //optionsBuilder.LogTo(o => logger.Log(LogLevel.Information, o, new[] { DbLoggerCategory.Database.Name}));
+            //optionsBuilder.EnableSensitiveDataLogging();
+
+            // Filter logs, if err make detailed logs
+            optionsBuilder.LogTo(o => logger.Log(LogLevel.Information, o, new[] { DbLoggerCategory.Database.Name }), LogLevel.Information)
+                .EnableSensitiveDataLogging()
+                .EnableDetailedErrors(); 
+        }
     }
 }

@@ -5,12 +5,19 @@ namespace UniversityDB
     using Microsoft.OpenApi.Models;
     using UniversityDB.DataAccess;
     using UniversityDB.Services;
-
+    using Serilog;
     public class Program
     {
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            // 10. Config Serilog
+            builder.Host.UseSerilog((hostBuilderCtx, loggerConf) =>
+            {
+                loggerConf.WriteTo.Console().WriteTo.Debug()
+                .ReadFrom.Configuration(hostBuilderCtx.Configuration);
+            });
+
 
             // 2.  Connection path with SQL Server Express
             const string CONNECTION_NAME = "DefaultConnection";
@@ -87,6 +94,9 @@ namespace UniversityDB
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
+            // 11. Tell ap to use Serilog
+            app.UseSerilogRequestLogging();
 
             app.UseHttpsRedirection();
 
