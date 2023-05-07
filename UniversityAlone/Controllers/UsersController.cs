@@ -24,11 +24,12 @@ namespace UniversityDB.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
-          if (_context.Users == null)
-          {
-              return NotFound();
-          }
-            return await _context.Users.ToListAsync();
+            var users = await _context.Users.ToListAsync();
+            if (users == null)
+            {
+                return NotFound();
+            }
+            return users;
         }
 
         // GET: api/Users/5
