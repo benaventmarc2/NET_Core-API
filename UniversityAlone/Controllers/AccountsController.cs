@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using UniversityDB.DataAccess;
 using UniversityDB.Helpers;
 using UniversityDB.Models;
 using UniversityDB.Models.DataModels;
@@ -13,10 +14,11 @@ namespace UniversityDB.Controllers
     public class AccountsController : ControllerBase
     {
         private readonly JwtSettings _jwtSettings;
-
-        public AccountsController(JwtSettings jwtSettings)
+        private readonly UniversityDBContext _context;
+        public AccountsController(JwtSettings jwtSettings, UniversityDBContext context)
         {
             this._jwtSettings = jwtSettings;
+            this._context = context;
         }
 
         private IEnumerable<User> Logins = new List<User>()
@@ -32,16 +34,17 @@ namespace UniversityDB.Controllers
             {
                 Id = 2,
                 Email = "marc@gmail.com",
-                Name = "User 1",
-                Password = "Admin"
+                Name = "User1",
+                Password = "1234"
             }           
         };
+
         [HttpPost]
         public IActionResult GetToken(UserLoggin userLogin)
         {
             try
             {
-                var Token = new UserTokens();
+                var Token = new UserTokens();                
                 var Valid = Logins.Any(user => user.Name.Equals(userLogin.UserName, StringComparison.OrdinalIgnoreCase));
                 if (Valid)
                 {
@@ -63,12 +66,12 @@ namespace UniversityDB.Controllers
             catch (Exception ex)
             {
 
-                throw new Exception("GetToekn Error", ex);
+                throw new Exception("GetToken Error", ex);
             }
         }
 
         [HttpGet]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Administrador")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Administrator")]
         public IActionResult GetUserList()
         {
             return Ok(Logins);

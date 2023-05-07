@@ -4,7 +4,7 @@ namespace UniversityDB.Models.DataModels
 {
     public class UserLoggin
     {
-        [Required] public string UserName { get; set; } = string.Empty;
-        [Required] public string Password { get; set; } = string.Empty;
+        [Required] public string UserName { get; set; }
+        [Required] public string Password { get; set; }
     }
 }

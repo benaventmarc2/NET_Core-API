@@ -1,6 +1,8 @@
 
 namespace UniversityDB.Controllers
 {
+    using Microsoft.AspNetCore.Authentication.JwtBearer;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     [ApiController]
     [Route("[controller]")] // localhost: 2024/WeatherForecast [Controller]
@@ -9,7 +11,7 @@ namespace UniversityDB.Controllers
         private static readonly string[] Summaries = new[]
         {
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
+    }; 
 
         private readonly ILogger<WeatherForecastController> _logger;
 
@@ -19,6 +21,7 @@ namespace UniversityDB.Controllers
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "User, Administrator")]
         public IEnumerable<WeatherForecast> Get()   
         {
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast

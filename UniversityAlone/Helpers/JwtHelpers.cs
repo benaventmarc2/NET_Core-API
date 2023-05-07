@@ -22,10 +22,10 @@ namespace UniversityDB.Helpers
             {
                 claims.Add(new Claim(ClaimTypes.Role, "Administrator"));
             }
-            else if (userAccounts.UserName == "User 1")
+            else if (userAccounts.UserName == "User1")
             {
                 claims.Add(new Claim(ClaimTypes.Role, "User"));
-                claims.Add(new Claim("UserOnly", "User 1"));
+                claims.Add(new Claim("UserOnly", "User1"));
             }
             return claims;
         }
@@ -57,7 +57,7 @@ namespace UniversityDB.Helpers
                 var jwToken = new JwtSecurityToken
                     (
                         issuer: jwtSettings.ValidIsUser,
-                        audience: jwtSettings.ValidAudioence,
+                        audience: jwtSettings.ValidAudience,
                         claims: GetClaims(model, out Id),
                         notBefore: new DateTimeOffset(DateTime.Now).DateTime,
                         expires: new DateTimeOffset(expireTime).DateTime,
